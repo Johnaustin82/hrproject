@@ -1,0 +1,32 @@
+{
+  "notices": [
+    {
+      "id": 1,
+      "title": "System Maintenance",
+      "message": "The system will be down for maintenance on Saturday, 25th November, from 10 PM to 4 AM.",
+      "date": "2024-11-23",
+      "priority": "High"
+    },
+    {
+      "id": 2,
+      "title": "Holiday Announcement",
+      "message": "The office will remain closed on Monday, 27th November, for a public holiday.",
+      "date": "2024-11-21",
+      "priority": "Medium"
+    },
+    {
+      "id": 3,
+      "title": "Weekly Meeting",
+      "message": "Don't forget to attend the weekly meeting this Friday at 3 PM in the conference room.",
+      "date": "2024-11-20",
+      "priority": "Low"
+    },
+    {
+      "id": "73c4",
+      "title": "Promotion ",
+      "message": "We are excited to announce the promotion of Matthew John to the role of Project Manager.",
+      "date": "2024-11-22",
+      "priority": "High"
+    }
+  ]
+}
