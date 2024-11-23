@@ -1,98 +1,322 @@
-import React, { useState, useEffect } from 'react';
-import { BsBusFrontFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
-import { FaBook } from 'react-icons/fa';
-import "./Sidebar.css"
+// import React, { useState } from 'react';
+// import './dashboard.css';
+// import EmployeeList from './Employees/EmployeeList';
+// import AdminLeaveManagement from './AdminLeaveManagement';
 
-function Home() {
-  const [vehicleCount, setVehicleCount] = useState(0);
-  const [reviewCount, setReviewCount] = useState(0);
+// const Dashboard = () => {
+//     const [employees, setEmployees] = useState([]);
+//     const [employeeId, setEmployeeId] = useState('');
+//     const [employeeName, setEmployeeName] = useState('');
+//     const [contactNumber, setContactNumber] = useState('');
+//     const [employeeRole, setEmployeeRole] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [password, setPassword] = useState('');
+//     const [isUpdating, setIsUpdating] = useState(false);
+//     const [updateIndex, setUpdateIndex] = useState(null);
+//     const [showEmployeeList, setShowEmployeeList] = useState(false);
+//     const [showEmployeeLeave, setShowEmployeeLeave] = useState(false)
+//     const [message, setMessage] = useState('');
 
-  // Fetch the number of vehicles and reviews
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const vehicleResponse = await fetch('https://matwanaminder-7.onrender.com/vehicles/count');
-        const vehicleData = await vehicleResponse.json();
-        setVehicleCount(vehicleData.count);
+//     const addEmployee = async (e) => {
+//         e.preventDefault();
 
-        const reviewResponse = await fetch('https://matwanaminder-7.onrender.com/reviews/count');
-        const reviewData = await reviewResponse.json();
-        setReviewCount(reviewData.count);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+//         if (employeeName && contactNumber && employeeRole && email && password) {
+//             const newEmployee = {
+//                 id: employeeId || Date.now(),
+//                 name: employeeName,
+//                 contact: contactNumber,
+//                 role: employeeRole,
+//                 email,
+//                 password,
+//             };
+
+//             try {
+//                 const response = await fetch('http://127.0.0.1:5000/auth/register', {
+//                     method: 'POST',
+//                     headers: { 'Content-Type': 'application/json' },
+//                     body: JSON.stringify(newEmployee),
+//                 });
+
+//                 if (response.ok) {
+//                     const data = await response.json();
+//                     setMessage(data.message || 'Employee added successfully');
+//                     setEmployees([...employees, newEmployee]);
+//                     resetForm();
+//                 } else {
+//                     const error = await response.json();
+//                     setMessage(error.error || 'Failed to add employee');
+//                 }
+//             } catch (error) {
+//                 setMessage('An error occurred while adding the employee');
+//                 console.error(error);
+//             }
+//         } else {
+//             setMessage('All fields are required');
+//         }
+//     };
+
+//     const resetForm = () => {
+//         setEmployeeId('');
+//         setEmployeeName('');
+//         setContactNumber('');
+//         setEmployeeRole('');
+//         setEmail('');
+//         setPassword('');
+//         setIsUpdating(false);
+//         setShowEmployeeList(false);
+//         setShowEmployeeLeave(false);
+//         setMessage('');
+//     };
+
+//     return (
+//         <div className="dashboard">
+//             <div className="side-panel">
+//                 <h2>Employee Management</h2>
+//                 <button onClick={resetForm}>Add Employee</button>
+//                 <button onClick={() => setShowEmployeeList(true)}>View Employees</button>
+//                 <button onClick={()=>setShowEmployeeLeave(true)}>Leave Management</button>
+//             </div>
+//             <div className="employee-form">
+//                 {!showEmployeeList ? (
+//                     <>
+//                         <h1>{isUpdating ? 'Update Employee' : 'Add Employee'}</h1>
+//                         {message && <p>{message}</p>}
+//                         <form onSubmit={addEmployee}>
+//                             <label>
+//                                 Employee ID:
+//                                 <input
+//                                     type="text"
+//                                     value={employeeId}
+//                                     onChange={(e) => setEmployeeId(e.target.value)}
+//                                     disabled={isUpdating}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Employee Name:
+//                                 <input
+//                                     type="text"
+//                                     value={employeeName}
+//                                     onChange={(e) => setEmployeeName(e.target.value)}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Contact Number:
+//                                 <input
+//                                     type="text"
+//                                     value={contactNumber}
+//                                     onChange={(e) => setContactNumber(e.target.value)}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Employee Role:
+//                                 <input
+//                                     type="text"
+//                                     value={employeeRole}
+//                                     onChange={(e) => setEmployeeRole(e.target.value)}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Email:
+//                                 <input
+//                                     type="email"
+//                                     value={email}
+//                                     onChange={(e) => setEmail(e.target.value)}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Password:
+//                                 <input
+//                                     type="password"
+//                                     value={password}
+//                                     onChange={(e) => setPassword(e.target.value)}
+//                                 />
+//                             </label>
+//                             <button type="submit">{isUpdating ? 'Update Employee' : 'Add Employee'}</button>
+//                         </form>
+//                     </>
+//                 ) : (
+//                     <EmployeeList employees={employees} /> ||
+//                     <AdminLeaveManagement leaveApplications={leaveApplications}/>
+//                 )}
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Dashboard;
+
+
+import React, { useState } from 'react';
+import './dashboard.css';
+import EmployeeList from './Employees/EmployeeList';
+import AdminLeaveManagement from './AdminLeaveManagement';
+import AddNotification from './Notications/AddNotications';
+
+const Dashboard = () => {
+    const [employees, setEmployees] = useState([]);
+    const [employeeId, setEmployeeId] = useState('');
+    const [employeeName, setEmployeeName] = useState('');
+    const [contactNumber, setContactNumber] = useState('');
+    const [employeeRole, setEmployeeRole] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [showEmployeeList, setShowEmployeeList] = useState(false);
+    const [showEmployeeLeave, setShowEmployeeLeave] = useState(false);
+    const [showAddLeave, setShowAddLeave]= useState(false);
+    const [message, setMessage] = useState('');
+
+    const addEmployee = async (e) => {
+        e.preventDefault();
+
+        if (employeeName && contactNumber && employeeRole && email && password) {
+            const newEmployee = {
+                id: employeeId || Date.now(),
+                name: employeeName,
+                contact: contactNumber,
+                role: employeeRole,
+                email,
+                password,
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newEmployee),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setMessage(data.message || 'Employee added successfully');
+                    setEmployees([...employees, newEmployee]);
+                    resetForm();
+                } else {
+                    const error = await response.json();
+                    setMessage(error.error || 'Failed to add employee');
+                }
+            } catch (error) {
+                setMessage('An error occurred while adding the employee');
+                console.error(error);
+            }
+        } else {
+            setMessage('All fields are required');
+        }
     };
 
-    fetchData();
-  }, []);
+    const resetForm = () => {
+        setEmployeeId('');
+        setEmployeeName('');
+        setContactNumber('');
+        setEmployeeRole('');
+        setEmail('');
+        setPassword('');
+        setIsUpdating(false);
+        setShowAddLeave(false);
+        setShowEmployeeList(false);
+        setShowEmployeeLeave(false);
+        setMessage('');
+    };
 
-  const data = [
-    { name: 'Bus 5', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'Bus 10', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'Bus 15', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'Bus 20', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'Bus 25', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'Bus 30', uv: 2390, pv: 3800, amt: 2500 },
-    { name: 'Bus 35', uv: 3490, pv: 4300, amt: 2100 },
-  ];
-
-  return (
-    <main className='main-container'>
-      <div className='main-title'>
-        <h3>DASHBOARD</h3>
-      </div>
-
-      <div className='main-cards'>
-        <div className='card'>
-          <div className='card-inner'>
-            <h3>Number of matatus</h3>
-            <FaBook className='card_icon'/>
-          </div>
-          <h1>{vehicleCount}</h1>
+    return (
+        <div className="dashboard">
+            <div className="side-panel">
+                <h2>Employee Management</h2>
+                <button onClick={resetForm}>Add Employee</button>
+                <button
+                    onClick={() => {
+                        setShowAddLeave(false)
+                        setShowEmployeeList(true);
+                        setShowEmployeeLeave(false);
+                    }}
+                >
+                    View Employees
+                </button>
+                <button
+                    onClick={() => {
+                        resetForm(false);
+                        setShowEmployeeList(false);
+                        setShowEmployeeLeave(false);
+                        setShowAddLeave(true);
+                    }}
+                >
+                    Add Notice
+                </button>
+                <button
+                    onClick={() => {
+                        setShowAddLeave(false)
+                        setShowEmployeeList(false);
+                        setShowEmployeeLeave(true);
+                    }}
+                >
+                    Leave Management
+                </button>
+            </div>
+            <div className="main-content">
+                {!showEmployeeList && !showEmployeeLeave && !showAddLeave && (
+                    <>
+                        <h1>{isUpdating ? 'Update Employee' : 'Add Employee'}</h1>
+                        {message && <p>{message}</p>}
+                        <form onSubmit={addEmployee}>
+                            <label>
+                                Employee ID:
+                                <input
+                                    type="text"
+                                    value={employeeId}
+                                    onChange={(e) => setEmployeeId(e.target.value)}
+                                    disabled={isUpdating}
+                                />
+                            </label>
+                            <label>
+                                Employee Name:
+                                <input
+                                    type="text"
+                                    value={employeeName}
+                                    onChange={(e) => setEmployeeName(e.target.value)}
+                                />
+                            </label>
+                            <label>
+                                Contact Number:
+                                <input
+                                    type="text"
+                                    value={contactNumber}
+                                    onChange={(e) => setContactNumber(e.target.value)}
+                                />
+                            </label>
+                            <label>
+                                Employee Role:
+                                <input
+                                    type="text"
+                                    value={employeeRole}
+                                    onChange={(e) => setEmployeeRole(e.target.value)}
+                                />
+                            </label>
+                            <label>
+                                Email:
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </label>
+                            <label>
+                                Password:
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </label>
+                            <button type="submit">{isUpdating ? 'Update Employee' : 'Add Employee'}</button>
+                        </form>
+                    </>
+                )}
+                {showEmployeeList && <EmployeeList employees={employees} />}
+                {showEmployeeLeave && <AdminLeaveManagement />}
+                {showAddLeave && <AddNotification/>}
+            </div>
         </div>
-        <div className='card'>
-          <div className='card-inner'>
-            <h3>CUSTOMERS REVIEW</h3>
-            <BsPeopleFill className='card_icon'/>
-          </div>
-          <h1>{reviewCount}</h1>
-        </div>
-      </div>
+    );
+};
 
-      <div className='charts'>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            data={data}
-            margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
-        </ResponsiveContainer>
-
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart
-            data={data}
-            margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </main>
-  );
-}
-
-export default Home;
+export default Dashboard;
