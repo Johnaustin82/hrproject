@@ -1,0 +1,115 @@
+/* General Styling */
+.about-us-background {
+    background: linear-gradient(to right, #f7f7f7, #ffffff);
+    padding: 50px 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .about-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* Header Styling */
+  /* h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .top-section {
+    text-align: center;
+    margin-bottom: 30px;
+  } */
+  
+  .tagline {
+    font-size: 24px;
+    color: #555;
+    margin-top: 0px;
+  }
+  
+  /* Text Section */
+  .text-container {
+    text-align: left;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+  }
+  
+  .description {
+    margin: 10px 0;
+    font-size: large;
+  }
+  
+  /* Services Section */
+  .services-section {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .services-title {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .services-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .service-card {
+    flex: 1;
+    min-width: 300px;
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .service-card h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .service-card p {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    background-color: #f0f8ff;
+  }
+  
+  /* Contact Us Section */
+  .contact-us-section {
+    margin-top: 40px;
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .contact-us-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .contact-us-section p {
+    font-size: 18px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
